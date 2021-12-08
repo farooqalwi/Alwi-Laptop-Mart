@@ -1,0 +1,71 @@
+﻿@model Alwi_Laptop_Mart.tbl_User
+
+@{
+    ViewBag.Title = "Account Setting";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="bg-light">
+        <h3 class="text-center modal-title">Customer Account Settings</h3>
+        <hr />
+        <div class="container">
+            <div class="row">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="col-md-6 account_settings_inputfileds">
+                    <label class="form-label" for="UserName">User Name:</label>
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @disabled = "true" } })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="col-md-6 account_settings_inputfileds">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @disabled = "true" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6 account_settings_inputfileds">
+                    @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6 account_settings_inputfileds">
+                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6 account_settings_inputfileds">
+                    @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6 account_settings_inputfileds">
+                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-5"></div>
+                <div class="col-md-2 text-center account_settings_inputfileds">
+                    <input type="submit" value="Save" class="btn btn-success" style="width: 120px;" />
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@if (ViewBag.Message != null)
+{
+    <script>
+        alert("@ViewBag.Message");
+    </script>
+}

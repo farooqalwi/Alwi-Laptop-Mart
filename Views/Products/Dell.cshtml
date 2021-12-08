@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Alwi_Laptop_Mart.tbl_Product>
+
+@{
+    ViewBag.Title = "Dell";
+}
+
+
+@*Products page slides*@
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/Images/Slides/9.jpg" class="d-block w-100 home_slide" alt="#">
+        </div>
+        <div class="carousel-item">
+            <img src="~/Images/Slides/8.jpg" class="d-block w-100 home_slide" alt="#">
+        </div>
+        <div class="carousel-item">
+            <img src="~/Images/Slides/6.jpg" class="d-block w-100 home_slide" alt="#">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+@*Products lists | HP*@
+<div class="row container-fluid products_lists">
+    @foreach (var item in Model)
+    {
+        var imgsrc = "";
+
+        <div class="col-sm-3 product_items" style="padding-bottom:30px;">
+            <div class="card" style="width: 18rem;">
+                @{
+                    if (item.Image != null)
+                    {
+                        var base64 = Convert.ToBase64String(item.Image);
+                        imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+
+                    }
+                }
+
+                <img src="@imgsrc" class="card-img-top" alt="image not found" />
+                <div class="card-body">
+                    <hr />
+                    <h5 class="card-title">@item.Model</h5>
+                    <p>---------------------------------------</p>
+                    <p class="card-text text-danger" style="font-weight: bold">Price: Rs. @item.Price</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href='@Url.Action("ProductDetails", "ProductDetails", new {productId = item.ProductID})' class="btn btn-primary">View Details</a>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <a href='@Url.Action("Dell", "Products", new {productId = item.ProductID})' class="btn btn-success"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@*payments-brands*@
+<div class="payments-brands text-center">
+    <img src="~/Images/payments-brands.png" />
+</div>
+
+

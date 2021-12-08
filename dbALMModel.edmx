@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbALMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Password" Type="nvarchar" MaxLength="500" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="500" />
+          <Property Name="State" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tbl_Cart">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="CartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductIcon" Type="image" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="50" />
+          <Property Name="Model" Type="nvarchar" MaxLength="200" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="AdminId" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_OrderHistory">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="50" />
+          <Property Name="Model" Type="nvarchar" MaxLength="200" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="CartId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="AdminId" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="50" />
+          <Property Name="Model" Type="nvarchar" MaxLength="200" />
+          <Property Name="Image" Type="image" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Display" Type="nvarchar(max)" />
+          <Property Name="Storage" Type="nvarchar(max)" />
+          <Property Name="Processor" Type="nvarchar(max)" />
+          <Property Name="RAM" Type="nvarchar(max)" />
+          <Property Name="Warranty" Type="nvarchar(max)" />
+          <Property Name="GraphicCard" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Password" Type="nvarchar" MaxLength="500" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="500" />
+          <Property Name="State" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityContainer Name="dbALMModelStoreContainer">
+          <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Cart" EntityType="Self.tbl_Cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_OrderHistory" EntityType="Self.tbl_OrderHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Product" EntityType="Self.tbl_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbALMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Display" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Storage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Processor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RAM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Warranty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GraphicCard" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Cart" Relationship="dbALMModel.FK__tbl_Cart__Produc__38996AB5" FromRole="tbl_Product" ToRole="tbl_Cart" />
+          <NavigationProperty Name="tbl_OrderHistory" Relationship="dbALMModel.FK__tbl_Order__Produ__4D94879B" FromRole="tbl_Product" ToRole="tbl_OrderHistory" />
+        </EntityType>
+        <EntityContainer Name="dbALMContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Product" EntityType="Self.tbl_Product" />
+          <EntitySet Name="tbl_Cart" EntityType="dbALMModel.tbl_Cart" />
+          <AssociationSet Name="FK__tbl_Cart__Produc__38996AB5" Association="dbALMModel.FK__tbl_Cart__Produc__38996AB5">
+            <End Role="tbl_Product" EntitySet="tbl_Product" />
+            <End Role="tbl_Cart" EntitySet="tbl_Cart" />
+          </AssociationSet>
+          <EntitySet Name="tbl_Admin" EntityType="dbALMModel.tbl_Admin" />
+          <EntitySet Name="tbl_OrderHistory" EntityType="dbALMModel.tbl_OrderHistory" />
+          <EntitySet Name="tbl_User" EntityType="dbALMModel.tbl_User" />
+          <AssociationSet Name="FK__tbl_Cart__AdminI__5629CD9C" Association="dbALMModel.FK__tbl_Cart__AdminI__5629CD9C">
+            <End Role="tbl_Admin" EntitySet="tbl_Admin" />
+            <End Role="tbl_Cart" EntitySet="tbl_Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Order__Admin__5535A963" Association="dbALMModel.FK__tbl_Order__Admin__5535A963">
+            <End Role="tbl_Admin" EntitySet="tbl_Admin" />
+            <End Role="tbl_OrderHistory" EntitySet="tbl_OrderHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Order__CartI__4E88ABD4" Association="dbALMModel.FK__tbl_Order__CartI__4E88ABD4">
+            <End Role="tbl_Cart" EntitySet="tbl_Cart" />
+            <End Role="tbl_OrderHistory" EntitySet="tbl_OrderHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Order__Produ__4D94879B" Association="dbALMModel.FK__tbl_Order__Produ__4D94879B">
+            <End Role="tbl_Product" EntitySet="tbl_Product" />
+            <End Role="tbl_OrderHistory" EntitySet="tbl_OrderHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Order__UserI__4F7CD00D" Association="dbALMModel.FK__tbl_Order__UserI__4F7CD00D">
+            <End Role="tbl_User" EntitySet="tbl_User" />
+            <End Role="tbl_OrderHistory" EntitySet="tbl_OrderHistory" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tbl_Cart">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="CartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductIcon" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ProductID" Type="Int32" />
+          <NavigationProperty Name="tbl_Product" Relationship="dbALMModel.FK__tbl_Cart__Produc__38996AB5" FromRole="tbl_Cart" ToRole="tbl_Product" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="AdminId" Type="Int32" />
+          <NavigationProperty Name="tbl_Admin" Relationship="dbALMModel.FK__tbl_Cart__AdminI__5629CD9C" FromRole="tbl_Cart" ToRole="tbl_Admin" />
+          <NavigationProperty Name="tbl_OrderHistory" Relationship="dbALMModel.FK__tbl_Order__CartI__4E88ABD4" FromRole="tbl_Cart" ToRole="tbl_OrderHistory" />
+        </EntityType>
+        <Association Name="FK__tbl_Cart__Produc__38996AB5">
+          <End Type="dbALMModel.tbl_Product" Role="tbl_Product" Multiplicity="0..1" />
+          <End Type="dbALMModel.tbl_Cart" Role="tbl_Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="tbl_Cart">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Cart" Relationship="dbALMModel.FK__tbl_Cart__AdminI__5629CD9C" FromRole="tbl_Admin" ToRole="tbl_Cart" />
+          <NavigationProperty Name="tbl_OrderHistory" Relationship="dbALMModel.FK__tbl_Order__Admin__5535A963" FromRole="tbl_Admin" ToRole="tbl_OrderHistory" />
+        </EntityType>
+        <EntityType Name="tbl_OrderHistory">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="CartId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="AdminId" Type="Int32" />
+          <NavigationProperty Name="tbl_Admin" Relationship="dbALMModel.FK__tbl_Order__Admin__5535A963" FromRole="tbl_OrderHistory" ToRole="tbl_Admin" />
+          <NavigationProperty Name="tbl_Cart" Relationship="dbALMModel.FK__tbl_Order__CartI__4E88ABD4" FromRole="tbl_OrderHistory" ToRole="tbl_Cart" />
+          <NavigationProperty Name="tbl_Product" Relationship="dbALMModel.FK__tbl_Order__Produ__4D94879B" FromRole="tbl_OrderHistory" ToRole="tbl_Product" />
+          <NavigationProperty Name="tbl_User" Relationship="dbALMModel.FK__tbl_Order__UserI__4F7CD00D" FromRole="tbl_OrderHistory" ToRole="tbl_User" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_OrderHistory" Relationship="dbALMModel.FK__tbl_Order__UserI__4F7CD00D" FromRole="tbl_User" ToRole="tbl_OrderHistory" />
+        </EntityType>
+        <Association Name="FK__tbl_Cart__AdminI__5629CD9C">
+          <End Type="dbALMModel.tbl_Admin" Role="tbl_Admin" Multiplicity="0..1" />
+          <End Type="dbALMModel.tbl_Cart" Role="tbl_Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Admin">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="tbl_Cart">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Order__Admin__5535A963">
+          <End Type="dbALMModel.tbl_Admin" Role="tbl_Admin" Multiplicity="0..1" />
+          <End Type="dbALMModel.tbl_OrderHistory" Role="tbl_OrderHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Admin">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="tbl_OrderHistory">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Order__CartI__4E88ABD4">
+          <End Type="dbALMModel.tbl_Cart" Role="tbl_Cart" Multiplicity="0..1" />
+          <End Type="dbALMModel.tbl_OrderHistory" Role="tbl_OrderHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cart">
+              <PropertyRef Name="CartId" />
+            </Principal>
+            <Dependent Role="tbl_OrderHistory">
+              <PropertyRef Name="CartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Order__Produ__4D94879B">
+          <End Type="dbALMModel.tbl_Product" Role="tbl_Product" Multiplicity="0..1" />
+          <End Type="dbALMModel.tbl_OrderHistory" Role="tbl_OrderHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="tbl_OrderHistory">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Order__UserI__4F7CD00D">
+          <End Type="dbALMModel.tbl_User" Role="tbl_User" Multiplicity="0..1" />
+          <End Type="dbALMModel.tbl_OrderHistory" Role="tbl_OrderHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tbl_OrderHistory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbALMModelStoreContainer" CdmEntityContainer="dbALMContext">
+          <EntitySetMapping Name="tbl_Product">
+            <EntityTypeMapping TypeName="dbALMModel.tbl_Product">
+              <MappingFragment StoreEntitySet="tbl_Product">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Display" ColumnName="Display" />
+                <ScalarProperty Name="Storage" ColumnName="Storage" />
+                <ScalarProperty Name="Processor" ColumnName="Processor" />
+                <ScalarProperty Name="RAM" ColumnName="RAM" />
+                <ScalarProperty Name="Warranty" ColumnName="Warranty" />
+                <ScalarProperty Name="GraphicCard" ColumnName="GraphicCard" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Cart">
+            <EntityTypeMapping TypeName="dbALMModel.tbl_Cart">
+              <MappingFragment StoreEntitySet="tbl_Cart">
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="ProductIcon" ColumnName="ProductIcon" />
+                <ScalarProperty Name="CartId" ColumnName="CartId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Admin">
+            <EntityTypeMapping TypeName="dbALMModel.tbl_Admin">
+              <MappingFragment StoreEntitySet="tbl_Admin">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_OrderHistory">
+            <EntityTypeMapping TypeName="dbALMModel.tbl_OrderHistory">
+              <MappingFragment StoreEntitySet="tbl_OrderHistory">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CartId" ColumnName="CartId" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_User">
+            <EntityTypeMapping TypeName="dbALMModel.tbl_User">
+              <MappingFragment StoreEntitySet="tbl_User">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

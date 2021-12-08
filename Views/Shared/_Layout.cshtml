@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALM - @ViewBag.Title</title>
+    <link href="~/Content/Custom.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/fontawesome.min.css" rel="stylesheet" />
+    <link rel="icon" href="~/Images/alm.png" sizes="32x32" type="image/png">
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body class="bg-gradient">
+    @*header*@
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <a href='@Url.Action("Index", "Home")' class="navbar-brand" style="padding-left: 20px; padding-right: 70px;">
+                <img src="~/Images/alm.png" width="30" height="30" /> Alwi Laptop Mart
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle me-4 header_title" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><p class="dropdown-header header_title">Categories</p></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href='@Url.Action("HP", "Products")'>HP</a></li>
+                            <li><a class="dropdown-item" href='@Url.Action("Mac", "Products")'>Mac</a></li>
+                            <li>
+                                @Html.ActionLink("Dell", "Dell", "Products", null, new { @class = "dropdown-item" })
+                            </li>
+                            <li><a class="dropdown-item" href='@Url.Action("Lenovo", "Products")'>Lenovo</a></li>
+                            <li><a class="dropdown-item" href='@Url.Action("Sony", "Products")'>Sony</a></li>
+                        </ul>
+                    </li>
+                    <li class="me-4">
+                        @using (Html.BeginForm("SearchProduct", "Products", FormMethod.Post, new { @class = "d-flex" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <input class="form-control rounded-0 rounded-start header_search" name="SearchTerm" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success rounded-0 rounded-end" type="submit"><i class="fa fa-search"></i></button>
+                        }
+
+                    </li>
+                    <li class="nav-item me-4">
+                        <a class="nav-link header_title" href='@Url.Action("CartList", "Cart")'>Cart <i class="fas fa-shopping-cart"></i></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle header_title" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li><p class="dropdown-header header_title">@User.Identity.Name</p></li>
+                            }
+                            else
+                            {
+                                <li><p class="dropdown-header header_title">Account</p></li>
+                            }
+
+                            <li><hr class="dropdown-divider"></li>
+
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (User.IsInRole("Customer"))
+                                {
+                                    <li><a class="dropdown-item" href='@Url.Action("OrderHistory", "CustomerOrderHistory")'>Order History</a></li>
+                                    <li><a class="dropdown-item" href='@Url.Action("Index", "UnderConstruction")'>Notifications</a></li>
+                                    <li><a class="dropdown-item" href='@Url.Action("Index", "UnderConstruction")'>Help</a></li>
+                                    <li><a class="dropdown-item" href='@Url.Action("UpdateAccount", "AccountSettings")'>Account Settings</a></li>
+                                    <li><a class="dropdown-item" href='@Url.Action("Index", "LogoutAccount")'>Logout</a></li>
+                                }
+                                else if (User.IsInRole("Admin"))
+                                {
+                                    <li><a class="dropdown-item" href='@Url.Action("AddProduct", "Products")'>Add Product</a></li>
+                                    <li><a class="dropdown-item" href='@Url.Action("OrderHistory", "Admin")'>Order History</a></li>
+                                    <li><a class="dropdown-item" href='@Url.Action("Logout", "Admin")'>Logout</a></li>
+                                }
+                            }
+                            else
+                            {
+                                <li><a class="dropdown-item" href='@Url.Action("Index", "RegisterAccount")'>Register</a></li>
+                                <li><a class="dropdown-item" href='@Url.Action("Index", "LoginAccount")'>Login</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href='@Url.Action("Login", "Admin")'>Admin</a></li>
+
+
+                            }
+
+
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    @*body content*@
+    <div class="body-content">
+        @RenderBody()
+    </div>
+
+
+    @*footer*@
+    <div class="footer" style="background-color: #e3f2fd;">
+        <div class="row">
+            <hr />
+            <div class="col-md-2 footer_items">
+                <p class="footer_title">About</p>
+                <hr />
+                <a href='@Url.Action("Index", "AboutUs")'>About Us</a><br />
+                <a href='@Url.Action("Index", "UnderConstruction")'>Testimonials / Reviews</a><br />
+                <a href='@Url.Action("Index", "UnderConstruction")'>Islamic Insurance</a><br />
+            </div>
+            <div class="col-md-2 footer_items">
+                <p class="footer_title">Help</p>
+                <hr />
+                <a href='@Url.Action("Index", "UnderConstruction")'>Payment Info</a><br />
+                <a href='@Url.Action("Index", "UnderConstruction")'>Delivery Info</a><br />
+                <a href='@Url.Action("Index", "UnderConstruction")'>Warranty and Claims</a><br />
+            </div>
+            <div class="col-md-2 footer_items">
+                <p class="footer_title">Social</p>
+                <hr />
+                <a href="https://www.facebook.com/UrduTechZone.pk/" target="_blank">Facebook</a><br />
+                <a href="https://twitter.com/" target="_blank">Twitter</a><br />
+                <a href="https://www.youtube.com/c/UrduTechZone" target="_blank">Youtube</a><br />
+            </div>
+            <div class="col-md-2 footer_logo">
+                <img src="~/Images/alm.png" />
+            </div>
+            <div class="col-md-2 footer_items">
+                <p class="footer_title">Contact Us</p>
+                <hr />
+                <a href='@Url.Action("Index", "Home")'>Alwi Laptop Mart</a><br />
+                <a href="mailto:info@mart.com">Email: info@mart.com</a><br />
+                <a href="tel:+92 300 1234567">Cell: +92 300 1234567</a><br />
+                <a href='@Url.Action("Index", "ContactUs")'>Feedback</a><br />
+            </div>
+            <div class="col-md-2 footer_items">
+                <p class="footer_title">Outlet Address</p>
+                <hr />
+                <p>
+                    Alwi Laptop Mart <br />
+                    C-313, First Floor, Royal Tower, <br />
+                    Karachi Pakistan
+                </p>
+                <a href="https://goo.gl/maps/QHCi3Z7mAAijpNGEA" target="_blank">Map</a>
+            </div>
+        </div>
+        <footer class="text-center copyright">
+            <hr />
+            <p>&copy; @DateTime.Now.Year ALM (Alwi Laptop Mart). All rights reserved.</p>
+        </footer>
+
+        <!-- Back to top button -->
+        <button type="button"
+                class="btn btn-secondary btn-floating btn-lg"
+                id="btn-back-to-top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/Custom.js"></script>
+</body>
+</html>

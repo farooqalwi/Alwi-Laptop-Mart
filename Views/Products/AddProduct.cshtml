@@ -1,0 +1,120 @@
+﻿@model Alwi_Laptop_Mart.Models.tbl_ProductValidation
+
+@{
+    ViewBag.Title = "Add Product";
+}
+
+<h3 class="text-center modal-title">Add Product</h3>
+<hr />
+
+@using (Html.BeginForm("AddProduct", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row addProduct_inputfileds">
+            @Html.LabelFor(model => model.Brand, htmlAttributes: new { @class = "form-label col-md-2 text-end" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Brand, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Brand, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row addProduct_inputfileds">
+            @Html.LabelFor(model => model.Model, htmlAttributes: new { @class = "form-label col-md-2 text-end" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Model, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Model, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row addProduct_inputfileds">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "form-label col-md-2 text-end" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row addProduct_inputfileds">
+            @Html.LabelFor(model => model.Display, htmlAttributes: new { @class = "form-label col-md-2 text-end" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Display, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Display, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row addProduct_inputfileds">
+            @Html.LabelFor(model => model.Storage, htmlAttributes: new { @class = "form-label col-md-2 text-end" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Storage, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Storage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row addProduct_inputfileds">
+            @Html.LabelFor(model => model.Processor, htmlAttributes: new { @class = "form-label col-md-2 text-end" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Processor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Processor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row addProduct_inputfileds">
+            @Html.LabelFor(model => model.RAM, htmlAttributes: new { @class = "form-label col-md-2 text-end" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.RAM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RAM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row addProduct_inputfileds">
+            @Html.LabelFor(model => model.Warranty, htmlAttributes: new { @class = "form-label col-md-2 text-end" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Warranty, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Warranty, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row addProduct_inputfileds">
+            @Html.LabelFor(model => model.GraphicCard, htmlAttributes: new { @class = "form-label col-md-2 text-end" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.GraphicCard, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GraphicCard, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row addProduct_inputfileds">
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "form-label col-md-2 text-end" })
+            <div class="col-md-6">
+                <input type="file" name="imgfile" id="imgfile" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row addProduct_inputfileds">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "form-label col-md-2 text-end" })
+            <div class="col-md-6 textarea_productDesc">
+                @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row addProduct_inputfileds">
+            <div class="text-center">
+                <input type="submit" value="Add" class="btn btn-success" style="width: 120px;" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@if (ViewBag.Message != null)
+{
+    <script>
+        alert("@ViewBag.Message");
+    </script>
+}

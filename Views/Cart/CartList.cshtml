@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Alwi_Laptop_Mart.tbl_Cart>
+
+@{
+    ViewBag.Title = "Cart List";
+}
+
+
+<h3 class="text-center modal-title">Cart List</h3>
+<hr />
+
+@if (Model.ToList().Count > 0)
+{
+
+    <table class="table table-striped table-bordered text-center">
+        <tr>
+            <th>
+                Serial No
+            </th>
+            <th>
+                Product Image
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+
+        @{ int SerialNo = 0;}
+        @{ decimal grandTotal = 0;}
+
+        @foreach (var item in Model)
+        {
+            SerialNo++;
+            grandTotal += Convert.ToDecimal(item.Price);
+            var imgsrc = "";
+            <tr style="vertical-align:middle;">
+                <td>
+                    @SerialNo
+                </td>
+                <td>
+                    @{
+                        if (item.ProductIcon != null)
+                        {
+                            var base64 = Convert.ToBase64String(item.ProductIcon);
+                            imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+
+                        }
+                    }
+                    <img src="@imgsrc" class="card-img-top" width="50px" height="120px" alt="image not found" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td class="cart_list">
+                    <a href='@Url.Action("Pay", "Cart", new {cartId = item.CartId})' onclick="paidAlert()">Pay</a> |
+                    <a href='@Url.Action("ProductDetails", "ProductDetails", new {productId = item.ProductID})'>View Details</a> |
+                    <a href='@Url.Action("Discart", "Cart", new {cartId = item.CartId})'>Discart</a>
+                </td>
+            </tr>
+        }
+
+        <tr>
+            <th colspan="4">Grand Total: </th>
+            <th>@grandTotal</th>
+
+            <th class="cart_list"><a href='@Url.Action("PayAll", "Cart")' onclick="paidAllAlert()">Pay All</a></th>
+        </tr>
+    </table>
+
+}
+else
+{
+    <h3 class="text-center modal-title text-danger" style="padding:90px;">Cart List is empty.</h3>
+    
+}
+
+<script>
+    function paidAlert() {
+        alert("Amount paid successfully.")
+    }
+
+    function paidAllAlert() {
+        alert("All products amount paid successfully.")
+        alert("Go Home Page.")
+    }
+</script>

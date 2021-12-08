@@ -1,0 +1,99 @@
+﻿
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.home_slide {
+    height: 300px !important;
+}
+
+.header_search {
+    width: 600px !important;
+}
+
+/*Back to top button*/
+#btn-back-to-top {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: none;
+}
+
+
+.footer {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.copyright {
+    padding-bottom: 2px;
+}
+
+.footer_items p{
+    padding: 0;
+    margin: 0;
+}
+
+.footer_items {
+    padding: 0 30px !important;
+}
+
+    .footer_items a, .login_link a, .cart_list a {
+        text-decoration: none;
+    }
+
+        .footer_items a:hover, .login_link:hover, .cart_list a:hover {
+            text-decoration: underline;
+        }
+
+.products_lists {
+    padding-top: 40px;
+}
+
+.payments-brands {
+    padding: 20px;
+}
+
+.header_title, .footer_title {
+    font-weight: bold;
+}
+
+
+.product_details {
+    padding: 40px;
+}
+
+.footer_logo {
+    justify-content: center;
+    text-align: center;
+    padding-top: 30px;
+}
+
+
+.account_settings_inputfileds, .account_register_inputfileds, .account_login_inputfileds, .feedback_inputfileds, .aboutus_form, .addProduct_inputfileds {
+    padding: 20px !important;
+}
+
+.underConstruction_img {
+    width: 300px;
+    height: 300px;
+    margin: 40px;
+}
+
+.underConstruction {
+    text-align: center;
+}
+
+.textarea_productDesc textarea {
+    width: 100% !important;
+}

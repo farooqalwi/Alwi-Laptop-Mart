@@ -1,0 +1,94 @@
+﻿@model Alwi_Laptop_Mart.tbl_Product
+
+@{
+    ViewBag.Title = "Product Details";
+}
+
+<div class="container product_details">
+    <div class="row product_details">
+        <div class="col-md-1"></div>
+        <div class="col-md-5" style="padding: 30px;">
+            @{var imgsrc = ""; }
+
+            @{
+                if (Model.Image != null)
+                {
+                    var base64 = Convert.ToBase64String(Model.Image);
+                    imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                }
+            }
+            <img src="@imgsrc" class="border" width="300" height="300" alt="image not found" />
+        </div>
+        <div class="col-md-5 border bg-light">
+            <div class="card-body">
+                <h5 class="card-title">Model: @Model.Model</h5>
+                <hr />
+                <h5 class="card-subtitle">Description:</h5>
+                <p>
+                    @Model.Description
+                </p>
+                <hr />
+                <p class="card-text text-danger" style="font-weight: bold">Price: Rs. @Model.Price</p>
+                <hr />
+                <div class="text-center">
+                    <a href='@Url.Action("Pay", "ProductDetails", new { productId = Model.ProductID })' onclick="paidAlert()" class="btn btn-primary text-center" style="width: 120px;">Pay</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <div class="row product_details">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 border bg-light" style="padding:10px;">
+            <h5 class="card-title">Product Details:</h5>
+            <hr />
+
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">Brand</th>
+                        <td>@Model.Brand</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Processor Type</th>
+                        <td colspan="2">@Model.Processor</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Installed RAM</th>
+                        <td>@Model.RAM</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Type of memory</th>
+                        <td>@Model.Storage</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Graphics Card</th>
+                        <td>@Model.GraphicCard</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Display</th>
+                        <td>@Model.Display</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Warranty</th>
+                        <td>@Model.Warranty</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+</div>
+
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <script>
+        function paidAlert() {
+            alert("Amount paid successfully.")
+        }
+    </script>
+}

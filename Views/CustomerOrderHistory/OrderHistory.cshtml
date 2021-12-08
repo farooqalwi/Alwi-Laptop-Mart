@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Alwi_Laptop_Mart.tbl_OrderHistory>
+
+@{
+    ViewBag.Title = "Order History";
+}
+
+<h3 class="text-center modal-title">Order History</h3>
+<hr />
+
+@if (Model.ToList().Count > 0)
+{
+
+    <table class="table table-striped table-bordered text-center">
+        <tr>
+            <th>
+                Serial No
+            </th>
+            <th>
+                User Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+
+        </tr>
+
+        @{ int SerialNo = 0;}
+
+        @foreach (var item in Model)
+        {
+            SerialNo++;
+            <tr>
+                <td>
+                    @SerialNo
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+                <td class="text-start">
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+}
+else
+{
+    <h3 class="text-center modal-title text-danger" style="padding:90px;">Order History is empty.</h3>
+
+}

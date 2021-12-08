@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Feedback";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="bg-light">
+        <h3 class="text-center modal-title">Feedback</h3>
+        <hr />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 feedback_inputfileds">
+                    <label class="form-label" for="FirstName">First Name: </label>
+                    <input class="form-control text-box single-line" id="FirstName" name="FirstName" type="text" value="" />
+                </div>
+
+                <div class="col-md-6 feedback_inputfileds">
+                    <label class="form-label" for="LasttName">Last Name: </label>
+                    <input class="form-control text-box single-line" id="LasttName" name="LasttName" type="text" value="" />
+                </div>
+
+                <div class="col-md-6 feedback_inputfileds">
+                    <label class="form-label" for="Email">Email: </label>
+                    <input class="form-control text-box single-line" id="Email" name="Email" type="text" value="" />
+                </div>
+
+                <div class="col-md-6 feedback_inputfileds">
+                    <label class="form-label" for="Phone">Phone: </label>
+                    <input class="form-control text-box single-line" id="Phone" name="Phone" type="text" value="" />
+                </div>
+
+                <div class="col-md-12 feedback_inputfileds">
+                    <label class="form-label" for="Feedback">Feedback: </label>
+                    <textarea class="form-control" id="Feedback" rows="3"></textarea>
+                </div>
+
+                <div class="col-md-5"></div>
+                <div class="col-md-2 text-center feedback_inputfileds">
+                    <input type="submit" value="Submit" class="btn btn-success" style="width: 120px;" />
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
