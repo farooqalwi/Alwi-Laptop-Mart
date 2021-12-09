@@ -40,8 +40,8 @@
     {
         var imgsrc = "";
 
-        <div class="col-sm-3 product_items" style="padding-bottom:30px;">
-            <div class="card" style="width: 18rem;">
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-4">
+            <div class="card">
                 @{
                     if (item.Image != null)
                     {
@@ -55,15 +55,12 @@
                 <div class="card-body">
                     <hr />
                     <h5 class="card-title">@item.Model</h5>
-                    <p>---------------------------------------</p>
+                    <hr style="border-top:1px dashed #8c8b8b" />
                     <p class="card-text text-danger" style="font-weight: bold">Price: Rs. @item.Price</p>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a href='@Url.Action("ProductDetails", "ProductDetails", new {productId = item.ProductID})' class="btn btn-primary">View Details</a>
-                        </div>
-                        <div class="col-md-6 text-end">
-                            <a href='@Url.Action("HP", "Products", new {productId = item.ProductID})' class="btn btn-success"><i class="fas fa-shopping-cart"></i></a>
-                        </div>
+                    <div class="row-cols-auto">
+                        <a href='@Url.Action("ProductDetails", "ProductDetails", new {productId = item.ProductID})' class="btn btn-primary">View Details</a>
+
+                        <a href='@Url.Action("HP", "Products", new {productId = item.ProductID})' class="btn btn-success float-end"><i class="fas fa-shopping-cart"></i></a>
                     </div>
                 </div>
             </div>

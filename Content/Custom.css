@@ -17,8 +17,32 @@ html, body {
     height: 300px !important;
 }
 
-.header_search {
-    width: 600px !important;
+@media (min-width: 1230px) {
+    .header_search {
+        width: 500px !important;
+    }
+}
+
+@media (min-width: 1130px) and (max-width: 1230px) {
+    .header_search {
+        width: 400px !important;
+    }
+}
+
+@media (min-width:1030px) and (max-width: 1130px) {
+    .header_search {
+        width: 300px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .header_search {
+        width: 75% !important;
+    }
+
+    .payments-brands img {
+        width: 100% !important;
+    }
 }
 
 /*Back to top button*/
@@ -39,7 +63,7 @@ html, body {
     padding-bottom: 2px;
 }
 
-.footer_items p{
+.footer_items p {
     padding: 0;
     margin: 0;
 }
@@ -96,4 +120,12 @@ html, body {
 
 .textarea_productDesc textarea {
     width: 100% !important;
+}
+
+
+@media (max-width: 767px) {
+    .addProduct_inputfileds label {
+        text-align: left !important;
+    }
+
 }
