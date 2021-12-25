@@ -132,6 +132,7 @@
     <Content Include="dbALMModel.edmx.diagram">
       <DependentUpon>dbALMModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Database Backup\dbALM.bak" />
     <None Include="Properties\PublishProfiles\AlwiLaptopMart - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.min.js" />
